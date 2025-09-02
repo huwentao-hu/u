@@ -3,23 +3,23 @@ import argparse
 import random
 from pathlib import Path
 
-def generate_sensitivity_fig(outdir: Path) -> None:
-    """占位：生成参数敏感性图并保存为 outdir/"q2_sensitivity.png"""
-    # TODO: 实现具体绘图逻辑
+def generate_revised_fig(outdir: Path) -> None:
+    """占位：生成改进策略图并保存为 outdir/"q4_revised_strategy.png"""
+    # TODO: 实现绘图逻辑
     pass
 
-def generate_ablation_fig(outdir: Path) -> None:
-    """占位：生成消融对比图并保存为 outdir/"q2_ablation.png"""
-    # TODO: 实现具体绘图逻辑
+def generate_effect_fig(outdir: Path) -> None:
+    """占位：生成效果对比图并保存为 outdir/"q4_effect.png"""
+    # TODO: 实现绘图逻辑
     pass
 
 def main(outdir: str = "paper/figs", seed: int = 2025) -> None:
     path = Path(outdir)
     path.mkdir(parents=True, exist_ok=True)
     random.seed(seed)
-    # TODO: 载入数据/设置实验
-    generate_sensitivity_fig(path)
-    generate_ablation_fig(path)
+    # TODO: 重新计算问题2和3在抽样误差下的策略
+    generate_revised_fig(path)
+    generate_effect_fig(path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

@@ -1,1 +1,12 @@
 % 公式推导与流程。
+设决策变量 $x_i\in\{0,1\}$ 表示是否检测零配件 $i$，$y$ 表示是否检测成品，$z$ 表示是否拆解不合格成品。
+若检测则剔除次品，未检测则直接流向下一阶段。期望成本表示为
+\begin{align}
+C &= \sum_{i=1}^2 x_i c_{ti} + c_a + y c_{tf} + z c_d + (1-y) p_f c_r, \\
+&\quad + (1-x_1)p_1 c_r + (1-x_2)p_2 c_r.
+\end{align}
+目标是
+\begin{equation}
+\min_{x_1,x_2,y,z} \; C \quad \text{s.t. } x_i,y,z\in\{0,1\}.
+\end{equation}
+求解流程：构建上述函数→枚举或动态规划求最小值→输出对应策略。

@@ -1,0 +1,48 @@
+你现在是“OpenAI Codex（Cloud）”。你的任务：在**不产生/提交任何二进制文件**的前提下，
+完成从题面解析到**LaTeX 论文代码**（包含 `\includegraphics` 插图语句）的全流程文本写入。
+
+# 硬性约束
+- **禁止** 在仓库生成或提交图片/PDF 等二进制文件（.png/.jpg/.svg/.pdf/.zip 等）。
+- **禁止** 运行会生成图片/二进制输出的脚本；你可以写出“将来运行的命令”，但现在不执行。
+- **禁止** 调用 LaTeX 编译流程（不产出 PDF）。
+- 允许创建/修改的文件类型：.tex/.md/.py/.txt/.json/.yaml 等纯文本。
+
+# 预处理（文本）
+1) 生成题面 Markdown（文本）：
+   - python -m pip install -r requirements.txt
+   - bash scripts/extract_statement.sh
+   - 产物：prompts/_inputs/statement.md
+2) 若题面缺失/解析失败：在 reports/analysis/00_statement_status.md 说明原因与建议，**停止**后续步骤。
+
+# 主要目标（文本 + 插图语句）
+- 读取：prompts/_inputs/statement.md 与 prompts/modeling_prompt_cn.md
+- 生成：
+  - reports/analysis/00_statement_parse.md（逐句拆题）
+  - reports/analysis/01_solutions_overview.md（每小问基础适配×创新融合）
+  - reports/analysis/02_key_findings.md（关键结论文本）
+  - reports/analysis/figures_manifest.md 与 reports/analysis/figspec.yaml：
+    * **定义每张图的文件名**（例如：paper/figs/q1_convergence.png）
+    * 指明**将来**的生成命令（例如：`python code/q1/main.py --seed 2025 --outdir paper/figs`）
+  - code/q*/main.py：为每个小问生成**代码骨架**，其输出文件名与上面 manifest 完全一致（但**不要运行**）
+  - paper/sections/01..07_*.tex：**在合适位置插入 `\includegraphics[width=...]{paper/figs/<name>.png}`**，与 manifest 的文件名严格对应
+
+# 论文风格（LaTeX）
+- 中文撰写，amsmath 公式；表格用 booktabs。
+- “变量—假设—公式—流程”齐全：变量表、3–5 条可检验/可放松假设、目标与约束推导及物理含义。
+- 求解与实验：**文字 + 公式** 描述方法与指标（RMSE/MAE/Kappa等）；插图通过 `\includegraphics` 引用**未来生成**的图片名。
+- 结果与讨论：量化结论（文字/表格），需要图的地方**直接写 `\includegraphics`**（不要画文本框/占位框）。
+
+# 统一命名（示例）
+- Q1：paper/figs/q1_convergence.png, paper/figs/q1_pred.png
+- Q2：paper/figs/q2_sensitivity.png, paper/figs/q2_ablation.png
+- 其余类推。确保与 manifest 和代码骨架一致。
+
+# 自检（将勾选结果写入 reports/analysis/99_checklist.md）
+- [ ] repo 中没有新增任何二进制文件
+- [ ] 已生成：00_statement_parse.md, 01_solutions_overview.md, 02_key_findings.md
+- [ ] 已生成：figures_manifest.md 与 figspec.yaml，文件名与 code/q*/main.py 完全一致
+- [ ] 已生成：paper/sections/01..07_*.tex，且在合适位置包含 `\includegraphics{...}` 语句
+- [ ] 未尝试运行生成图片或编译 LaTeX
+
+# 现在开始
+- 不要提问；如遇信息缺口，请做保守且可检验的假设，并在相关 .md 中标注 TODO。

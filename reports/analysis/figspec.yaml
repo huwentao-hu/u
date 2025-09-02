@@ -1,0 +1,11 @@
+figures:
+  - id: F1
+    path: paper/figs/q1_convergence.png
+    question: Q1
+    title: 收敛曲线
+    generator: python code/q1/main.py --seed 2025 --outdir paper/figs
+  - id: F2
+    path: paper/figs/q1_pred.png
+    question: Q1
+    title: 真实-预测对比
+    generator: python code/q1/main.py --seed 2025 --outdir paper/figs

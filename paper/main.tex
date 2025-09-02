@@ -1,0 +1,67 @@
+% !TeX program = xelatex
+\documentclass[12pt]{article}
+\usepackage{xeCJK}
+\setCJKmainfont{FandolSong-Regular} % TeX Live 自带中文字体，避免缺字
+\usepackage{geometry}
+\geometry{a4paper,margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{ifthen}
+\usepackage{ifpdf}
+\usepackage{ifxetex}
+\usepackage{ifluatex}
+\usepackage{xifthen}
+\usepackage{etoolbox}
+\usepackage{filecontents}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+
+% --- “安全包含”宏：优先 \includegraphics（如文件缺失，仅在编译时显示一行注记） ---
+\makeatletter
+\newcommand{\safeincludegraphics}[2][]{%
+  \IfFileExists{#2}{%
+    \includegraphics[#1]{#2}%
+  }{%
+    \fbox{\parbox{0.9\linewidth}{\centering \textbf{(缺少图像文件)} #2 }}%
+  }%
+}
+\makeatother
+
+\title{基于 POMDP 与贝叶斯顺序检验的生产过程质量检测与成本优化研究（LaTeX 代码版）}
+\author{团队：示例}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+此处由 Codex 自动填充摘要（纯文本）。
+\end{abstract}
+
+\section{问题重述}
+\input{sections/01_problem_restatement.tex}
+
+\section{符号与假设}
+\input{sections/02_notations_assumptions.tex}
+
+\section{模型建立}
+\input{sections/03_modeling.tex}
+
+\section{求解与实验}
+\input{sections/04_solution_experiments.tex}
+
+\section{结果与讨论}
+\input{sections/05_results_discussion.tex}
+
+\section{模型评价与改进}
+\input{sections/06_evaluation_improvements.tex}
+
+\section{结论}
+\input{sections/07_conclusion.tex}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

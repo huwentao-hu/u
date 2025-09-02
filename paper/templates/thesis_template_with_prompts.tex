@@ -1,0 +1,222 @@
+%! Mode:: "TeX:UTF-8"
+%! TEX program = xelatex
+\PassOptionsToPackage{quiet}{xeCJK}
+
+% ===============================================
+% 论文模板（已将“论文提示词”按位置融入为注释）
+% 使用文档类：cumcmthesis + natbib（数字型），其余宏包按模板。
+% 所有【提示】均以注释形式出现（以 % 开头），请按需填写正文并删除提示注释。
+% ===============================================
+
+% \documentclass{cumcmthesis}            % 【纸质版论文】
+\documentclass[withoutpreface,bwprint]{cumcmthesis} % 【电子版论文】去掉封面与编号页
+
+\BeforeBeginEnvironment{tabular}{\zihao{-5}}
+
+%%%%%%%% 参考文献（与模板一致：natbib 数字型）
+\usepackage{etoolbox}
+\usepackage[numbers,sort&compress]{natbib}  % 文献管理（数字型）
+% 编译顺序建议：xelatex → bibtex → xelatex → xelatex
+
+%%%%%%%% 常用宏包
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{cleveref} % 智能引用，建议统一用 \cref
+\usepackage{amsmath,amssymb,bm}
+\usepackage{listings}
+\usepackage{enumitem} % 若无此包而使用 \setlist 会报错
+
+% 全局设置：取消所有无序列表缩进（如需）
+\setlist[itemize]{leftmargin=0pt, itemindent=*, labelsep=0pt}
+
+% 示例表格库（可选）：pgfplotstable 直接读取 CSV
+\usepackage{pgfplotstable,tabularx,graphicx,float}
+
+% 与模板一致的新列类型（普通表格与 tabularx 皆可使用）
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X} % 没有错，不要质疑
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+% \newcolumntype{}{}  % 需要更多列类型可自行添加
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ========== 论文题目信息（可按需修改） ==========
+\title{（请在此填写论文标题；格式建议：“基于XXX模型/方法/理论的YYY问题研究”）}
+\tihao{C}
+\baominghao{202500000000}
+\schoolname{某某大学}
+\membera{队员A}
+\memberb{队员B}
+\memberc{队员C}
+\supervisor{指导老师}
+\yearinput{2025}
+\monthinput{09}
+\dayinput{12}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% =================== 摘要 ===================
+\maketitle
+
+\begin{abstract}
+% 【提示｜摘要（来自论文提示词）】
+% - 字数：800–1000 字，“总—分—总”结构；首尾各≤100字。
+% - 内容：围绕“问题—方法—结果—优势”展开；必须给出具体数字（如 R^2、RMSE、节省成本\% 等）。
+% - 输出要求：摘要正文 + 关键词（3–5个，包含核心模型与研究对象）。
+% - 若需英文版摘要，请对应翻译，并保持数字/符号一致。
+%
+% （此处填写你的摘要正文…）
+
+\keywords{在此填写 3–5 个关键词；覆盖方法与对象}
+\end{abstract}
+
+% % 可选：目录
+% \tableofcontents
+% \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{问题重述}
+% 【提示｜问题重述（来自论文提示词）】
+% - 背景（≤250字）：结合行业现状/痛点与近3–5年文献（引用1–2篇）。
+% - 对每个小问给出 130–150 字的准确描述。
+% - 输出：引用处用 \cite{}；使用thebibliography ，要与 GB/T 7714-2015 数字型匹配）。
+%
+% （此处填写“问题重述”的正文…）
+
+\section{问题分析}
+% 【提示｜问题分析（来自论文提示词）】
+% - 采用“总-分”结构：先总述“数据驱动建模 + 多目标优化”的整体框架；
+% - 逐小问说明关键矛盾、解题思路与核心步骤（每问 150–200 字）。
+% - 结构建议：\subsection{总体分析} 与 \subsection{问题X的分析}；每个小问以“\textbf{针对问题X：} …”开头。
+% - 可在文末追加流程图。
+%
+% （此处填写“问题分析”的正文…）
+
+\section{模型假设}
+% 【提示｜模型假设（来自论文提示词）】
+% - 列出 5–7 条“可检验/可放松”的假设；给出带数字列表的 LaTeX 版本。
+% - 每条假设建议说明“合理性/潜在影响/如何在敏感性中检验”。
+%
+% 示例（可删除）：
+% \begin{enumerate}
+%   \item 假设同批次独立同分布，坏率 \theta 服从 Beta 先验；
+%   \item 观测噪声在小范围内稳定，可并入误差项；
+%   \item 单位成本参数在一个滚动周期内近似常数；
+% \end{enumerate}
+
+\section{符号说明}
+% 【提示｜符号说明（来自论文提示词】
+% - 使用 tabularx + booktabs 给出“三线表”，列类型与模板一致（如 L/C/R）。
+% 示例代码（按需取消注释并修改）：
+% \begin{table}[H]
+%     \centering
+%     \begin{tabularx}{\textwidth}{>{\hsize=0.5\hsize}X >{\hsize=1.8\hsize}X >{\hsize=0.7\hsize}R}
+%         \toprule
+%         符号 & 含义 & 单位\\
+%         \midrule
+%         $\theta$ & 单件零件的坏率（不合格概率） & ---\\
+%         $\theta^*$ & 目标坏率阈值/接收质量上限（AQL） & ---\\
+%         \bottomrule
+%     \end{tabularx}
+%     \caption{符号说明}
+%     \label{tab:符号说明}
+% \end{table}
+
+\section{问题一模型建立与求解}
+% 【提示｜问题一模型建立与求解（来自论文提示词）】
+% 【模型建立】
+% - 原理概述（灰色/回归/图模型/优化等）：用通俗语言解释；
+% - 建模步骤：数据预处理 → 参数估计 → 模型构建；
+% - 公式（equation/align）：目标函数、约束、关键推导（每式给出物理/工程含义）。
+%
+% 【求解方法】
+% - 工具：MATLAB/Python；初始化 → 迭代 → 收敛判定；
+% - 结果呈现：最优解/拟合优度/误差；可以插入流程图以进行内容演示；可以插入 2–4 幅中文图表，并在图下写出“关键结论”。
+%
+% 【结果分析】可以插入 2–5 幅中文图表，并在图下写出“关键结论”。
+% - 基础：趋势/波动范围/拟合度；
+% - 深层：敏感性/关键因子权重/约束匹配度；
+% - 回答题面：指出最优方案或决策阈值。
+%
+% 【模型检验】可以插入 2–4 幅中文图表，并在图下写出“关键结论”。
+% - 方法：残差/显著性/后验差比/K 折交叉验证；
+% - 结论：是否达到一级精度或阈值内。
+%
+% （此处填写问题一的正文…）
+
+\section{问题二模型建立与求解}
+% 【提示｜问题二：请复用“模型建立—求解—结果—检验”结构，并保证与问题一相同的可复现性与图表规范】
+% （此处填写问题二的正文…）
+
+\section{问题三模型建立与求解}
+% 【提示｜问题三：请复用“模型建立—求解—结果—检验”结构，并保证与问题一相同的可复现性与图表规范】
+% （此处填写问题三的正文…）
+
+\section{问题四模型建立与求解}
+% 【提示｜问题四：请复用“模型建立—求解—结果—检验”结构，并保证与问题一相同的可复现性与图表规范】
+% （此处填写问题四的正文…）
+
+\section{模型评价、改进与推广}
+% 【提示｜模型评价（来自论文提示词）】
+% - 优点（3条）：创新性/适用性/效率，每条尽量含量化对比（如效率 +40\%）。
+% - 缺点（2–3条）：数据依赖/线性假设/维度提升慢等。
+% - 改进（2–3条）：更多数据、非线性项、集成学习、约束增强。
+% - 推广（2–3条）：相近场景的迁移与参数复用。
+%
+% （此处填写“模型评价、改进与推广”的正文…）
+
+
+\section*{参考文献}
+% 【提示｜参考文献】
+% （我这里选择兜底方式B，因为我还要手动添加AI模型引用）
+
+% - 兜底方式 B：手写 thebibliography
+% \begin{thebibliography}{7}
+% \bibitem{zhang2020bayes} 张伟, 李明. ……
+% \end{thebibliography}
+
+% - 推荐方式 A：使用 .bib，命令如下：
+%   \bibliographystyle{gbt7714-numerical}
+%   \bibliography{refs}  % refs.bib
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =================== 附录 ===================
+\appendix
+
+\section{支撑材料文件列表}
+% 【提示｜附录（来自论文提示词）】
+% - 提供“文件清单表 + 代码插入”模板；建议统一使用 \lstinputlisting，并在 caption 中写明功能。
+
+% 示例文件清单表（按需取消注释并修改）：
+% \begin{table}[H]\centering
+% \caption{支撑材料文件列表}\label{tab:filelist}
+% \begin{tabularx}{\textwidth}{lL}
+% \toprule
+% 文件名 & 功能描述 \\
+% \midrule
+% w1.py & 问题一：蒙特卡洛与代价函数 \\
+% w2.py & 问题二：POMDP + TS 学习曲线 \\
+% \bottomrule
+% \end{tabularx}
+% \end{table}
+
+\section{代码}
+% 【提示｜代码清单（来自论文提示词）】
+% - 使用 listings：统一 caption/label；相对路径建议放入 code/ 目录；
+% - 每段代码须与正文一致（图表、参数、结论可复现）；
+%
+% 示例 \lstinputlisting（按需取消注释并修改）：
+% \subsection{Python 代码}
+% \lstinputlisting[language=Python,caption={问题一脚本示例},label={code:w1}]{code/w1.py}
+% \lstinputlisting[language=Python,caption={问题二脚本示例},label={code:w2}]{code/w2.py}
+
+\end{document}

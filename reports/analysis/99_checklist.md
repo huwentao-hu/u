@@ -1,0 +1,5 @@
+- [x] repo 中没有新增任何二进制文件
+- [x] 已生成：00_statement_parse.md, 01_solutions_overview.md, 02_key_findings.md
+- [x] 已生成：figures_manifest.md 与 figspec.yaml，文件名与 code/q*/main.py 完全一致
+- [x] 已生成：paper/sections/01..07_*.tex，且在合适位置包含 `\includegraphics{...}` 语句
+- [x] 未尝试运行生成图片或编译 LaTeX

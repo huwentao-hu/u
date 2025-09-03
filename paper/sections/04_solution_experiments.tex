@@ -1,6 +1,18 @@
 % 说明：本节可以插入需要的图；图像文件稍后由代码生成到 paper/figs/。
+针对抽样检测与多阶段决策模型，我们展示算法收敛性、后验演化以及策略优化。
 \begin{figure}[htbp]\centering
-  % 建议：直接使用 \includegraphics，或在担心缺图编译时报错时改用 \safeincludegraphics
   \includegraphics[width=0.9\linewidth]{paper/figs/q1_convergence.png}
-  \caption{Q1：收敛曲线（将来由 code/q1/main.py 生成至 paper/figs/）}
+  \caption{Q1：后验均值收敛曲线（将来由 code/q1/main.py 生成）}
+\end{figure}
+\begin{figure}[htbp]\centering
+  \includegraphics[width=0.9\linewidth]{paper/figs/q1_posterior.png}
+  \caption{Q1：次品率后验分布（将来由 code/q1/main.py 生成）}
+\end{figure}
+\begin{figure}[htbp]\centering
+  \includegraphics[width=0.9\linewidth]{paper/figs/q2_sensitivity.png}
+  \caption{Q2：参数敏感性分析（将来由 code/q2/main.py 生成）}
+\end{figure}
+\begin{figure}[htbp]\centering
+  \includegraphics[width=0.9\linewidth]{paper/figs/q2_policy.png}
+  \caption{Q2：策略热力图（将来由 code/q2/main.py 生成）}
 \end{figure}

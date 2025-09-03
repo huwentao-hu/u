@@ -2,10 +2,61 @@ figures:
   - id: F1
     path: paper/figs/q1_convergence.png
     question: Q1
-    title: 收敛曲线
+    title: 后验均值收敛
     generator: python code/q1/main.py --seed 2025 --outdir paper/figs
   - id: F2
+    path: paper/figs/q1_posterior.png
+    question: Q1
+    title: 后验分布
+    generator: python code/q1/main.py --seed 2025 --outdir paper/figs
+  - id: F3
     path: paper/figs/q1_pred.png
     question: Q1
     title: 真实-预测对比
     generator: python code/q1/main.py --seed 2025 --outdir paper/figs
+  - id: F4
+    path: paper/figs/q2_sensitivity.png
+    question: Q2
+    title: 参数敏感性
+    generator: python code/q2/main.py --seed 2025 --outdir paper/figs
+  - id: F5
+    path: paper/figs/q2_ablation.png
+    question: Q2
+    title: 消融对比
+    generator: python code/q2/main.py --seed 2025 --outdir paper/figs
+  - id: F6
+    path: paper/figs/q2_policy.png
+    question: Q2
+    title: 策略热力图
+    generator: python code/q2/main.py --seed 2025 --outdir paper/figs
+  - id: F7
+    path: paper/figs/q3_strategy.png
+    question: Q3
+    title: 决策流程图
+    generator: python code/q3/main.py --seed 2025 --outdir paper/figs
+  - id: F8
+    path: paper/figs/q3_cost.png
+    question: Q3
+    title: 成本比较
+    generator: python code/q3/main.py --seed 2025 --outdir paper/figs
+  - id: F9
+    path: paper/figs/q3_cost_dist.png
+    question: Q3
+    title: 成本分布
+    generator: python code/q3/main.py --seed 2025 --outdir paper/figs
+  - id: F10
+    path: paper/figs/q4_revised_strategy.png
+    question: Q4
+    title: 改进策略
+    generator: python code/q4/main.py --seed 2025 --outdir paper/figs
+  - id: F11
+    path: paper/figs/q4_effect.png
+    question: Q4
+    title: 成本对比
+    generator: python code/q4/main.py --seed 2025 --outdir paper/figs
+  - id: F12
+    path: paper/figs/q4_risk.png
+    question: Q4
+    title: 风险曲线
+    generator: python code/q4/main.py --seed 2025 --outdir paper/figs
+

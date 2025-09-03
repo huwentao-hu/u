@@ -1,1 +1,22 @@
 % 公式推导与流程。
+设决策变量 $x_i\in\{0,1\}$ 表示是否检测零配件 $i$，$y$ 表示是否检测成品，$z$ 表示是否拆解不合格成品。
+若检测则剔除次品，未检测则直接流向下一阶段。期望成本表示为
+\begin{align}
+C &= \sum_{i=1}^2 x_i c_{ti} + c_a + y c_{tf} + z c_d + (1-y) p_f c_r, \\
+&\quad + (1-x_1)p_1 c_r + (1-x_2)p_2 c_r.
+\end{align}
+目标是
+\begin{equation}
+\min_{x_1,x_2,y,z} \; C \quad \text{s.t. } x_i,y,z\in\{0,1\}.
+\end{equation}
+对于问题1，引入 Beta 先验 $\mathrm{Beta}(\alpha_0,\beta_0)$，$n$ 次抽样后后验为
+\begin{equation}
+\mathrm{Beta}(\alpha_0+x,\,\beta_0+n-x),
+\end{equation}
+并采用序贯概率比检验以早停。
+问题2 建模为 MDP，价值函数满足贝尔曼方程
+\begin{equation}
+V(s)=\min_a \left\{ c(s,a)+\gamma\sum_{s'}P(s'|s,a)V(s') \right\}.
+\end{equation}
+问题4 中考虑风险控制，引入 CVaR 指标 $\mathrm{CVaR}_\rho$ 约束。
+求解流程：构建上述函数→贝叶斯更新与序贯检验→动态规划/强化学习求策略→仿真评估与风险分析。
